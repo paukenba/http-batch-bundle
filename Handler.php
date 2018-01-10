@@ -6,7 +6,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\HttpKernel\KernelInterface;
 
 class Handler
 {
@@ -26,10 +25,9 @@ class Handler
     private $batchRequest;
 
     /**
-     * Handler constructor.
-     * @param AppKernel $kernel
+     * @param HttpKernelInterface $kernel
      */
-    public function __construct(KernelInterface $kernel)
+    public function __construct(HttpKernelInterface $kernel)
     {
         $this->kernel = $kernel;
     }
