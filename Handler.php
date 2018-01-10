@@ -10,13 +10,19 @@ use Symfony\Component\HttpKernel\KernelInterface;
 
 class Handler
 {
+    /**
+     * @var string
+     */
     private $boundary;
 
-    /** @var  Kernel */
+    /**
+     * @var Kernel $kernel
+     */
     private $kernel;
 
-
-    /** @var  Request */
+    /**
+     * @var Request $batchRequest
+     */
     private $batchRequest;
 
     /**
@@ -47,7 +53,6 @@ class Handler
         $this->getBatchHeader($request);
         $subRequests = $this->getSubRequests($request);
         return $this->getBatchRequestResponse($subRequests);
-
     }
 
     /**
@@ -63,7 +68,7 @@ class Handler
     }
 
     /**
-     * @param $contentType
+     * @param string $contentType
      * @return string
      * @throws \HttpHeaderException
      */
@@ -86,7 +91,6 @@ class Handler
         } else {
             throw new BadRequestHttpException("Boundary can not be found.");
         }
-
     }
 
     /**
@@ -131,7 +135,7 @@ class Handler
         $content = $guzzleRequest->getBody();
 
         $symfonyRequest = Request::create($url, $method, $params, $cookies, $files, $server, $content);
-        foreach ( $guzzleRequest->getHeaders() as $key => $value)  {
+        foreach ($guzzleRequest->getHeaders() as $key => $value)  {
             $symfonyRequest->headers->set($key, $value);
         }
         return $symfonyRequest;
@@ -151,7 +155,7 @@ class Handler
     }
 
     /**
-     * @param $subResponses
+     * @param Response[] $subResponses
      * @return Response
      */
     private function generateBatchResponseFromSubResponses($subResponses)
