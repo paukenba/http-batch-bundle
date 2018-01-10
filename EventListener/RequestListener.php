@@ -54,7 +54,5 @@ class RequestListener
                 });
             }
         }
-
-        return;
     }
 }
