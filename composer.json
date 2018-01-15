@@ -1,5 +1,5 @@
 {
-    "name": "ideasoft/http-batch-bundle",
+    "name": "paukenba/http-batch-bundle",
     "description": "Http batch server implementation for symfony via sub requests.",
     "license": "MIT",
     "authors": [
